@@ -1,0 +1,31 @@
+service: packt-sample-kinesis
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 128
+  timeout: 300
+  stage: dev
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action: kinesis:*
+      Resource: "*"
+
+package:
+  exclude:
+    - node_modules/**
+
+functions:
+  produce:
+    handler: handler.produce
+    events:
+      - schedule: rate(1 minute)
+
+resources:
+  Resources:
+    TransactionsStream:
+      Type: AWS::Kinesis::Stream
+      Properties:
+        Name: my-first-stream
+        ShardCount: 1

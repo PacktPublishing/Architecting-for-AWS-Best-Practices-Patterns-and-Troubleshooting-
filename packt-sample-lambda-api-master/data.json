@@ -1,0 +1,11 @@
+{
+  "pathParameters": {
+    "email": "mail@jamescross.io"
+  },
+  "body": {
+    "email_address": "mail@jamescross.io",
+    "first_name": "James",
+    "last_name": "Cross",
+    "course_title": "AWS Bootcamp"
+  }
+}

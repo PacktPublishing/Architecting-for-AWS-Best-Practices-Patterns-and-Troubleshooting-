@@ -1,0 +1,23 @@
+{
+  "name": "packt-sample-lambda-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamescross91/packt-sample-lambda-api.git"
+  },
+  "author": "James Cross",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamescross91/packt-sample-lambda-api/issues"
+  },
+  "homepage": "https://github.com/jamescross91/packt-sample-lambda-api#readme",
+  "dependencies": {
+    "aws-sdk": "^2.57.0",
+    "serverless": "^1.22.0"
+  }
+}

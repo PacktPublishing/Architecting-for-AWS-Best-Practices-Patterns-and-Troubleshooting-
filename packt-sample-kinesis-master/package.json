@@ -1,0 +1,23 @@
+{
+  "name": "packt-sample-kinesis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamescross91/packt-sample-kinesis.git"
+  },
+  "author": "James Cross",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamescross91/packt-sample-kinesis/issues"
+  },
+  "homepage": "https://github.com/jamescross91/packt-sample-lkinesis#readme",
+  "dependencies": {
+    "aws-sdk": "^2.57.0",
+    "serverless": "^1.22.0"
+  }
+}

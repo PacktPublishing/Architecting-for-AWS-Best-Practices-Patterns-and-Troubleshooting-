@@ -1,0 +1,76 @@
+service: packt-sample-lambda-api
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 128
+  stage: dev
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action: s3:*
+      Resource: "*"
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello/{name}
+          method: get
+
+  reads3:
+    handler: handler.reads3
+    events:
+      - http:
+          path: reads3
+          method: get
+
+  get-authors:
+    handler: handler.getAuthors
+    events:
+      - http:
+          path: getauthors/{email}
+          method: get
+  
+  create-author:
+    handler: handler.createAuthor
+    events:
+      - http:
+          path: createauthor
+          method: post
+
+resources:  
+  Resources:
+    DynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: packt-authors-table
+        AttributeDefinitions:
+          - AttributeName: email_address
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email_address
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    DynamoDBIamPolicy:
+      Type: AWS::IAM::Policy
+      DependsOn: DynamoDbTable
+      Properties:
+        PolicyName: lambda-dynamodb
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:Query
+                - dynamodb:Scan
+              Resource: arn:aws:dynamodb:*:*:table/packt-authors-table
+        Roles:
+          - Ref: IamRoleLambdaExecution
+
+
